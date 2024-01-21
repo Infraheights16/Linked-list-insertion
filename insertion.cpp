@@ -19,12 +19,20 @@ void print(Node* head){
     cout <<endl;
 }
 void insertAthead(Node* &head,int data){
-    Node* temp = new Node(7);
+    if(head == NULL){
+        Node* temp = new Node(data);
+        temp = head;
+    }
+    Node* temp = new Node(data);
     temp -> next = head;
     head = temp;
 }
 void insertAttail(Node* &tail,int data){
-    Node* temp = new Node(25);
+    if(tail == NULL){
+        Node* temp = new Node(data);
+        temp = tail;
+    }
+    Node* temp = new Node(data);
     tail -> next = temp;
     temp -> next = NULL;
     tail = temp;
