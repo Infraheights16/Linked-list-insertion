@@ -9,6 +9,14 @@ class Node{
         this -> data = data;
         this -> next = NULL;
     }
+    //Destructor
+    ~Node(){
+      int value = this -> data;
+      if(this -> next != NULL){
+         delete next;
+         this -> next = NULL;
+      }
+    }
 };
 void print(Node* head){
     Node* temp = head;
@@ -59,6 +67,29 @@ int getlength(Node* head){
     }
     return count;
 }
+
+void deletenode(int position,Node* &head){
+   if(position == 1){
+      Node* temp = head;
+      head = head -> next;
+      temp -> next = NULL;
+      delete temp;
+   }
+   else{
+      Node* curr = head;
+      Node* prev = NULL;
+
+      int cnt=1;
+      while(cnt < position){
+         prev = curr;
+         curr = curr -> next;
+         cnt++;
+      }
+      prev -> next = curr -> next;
+      curr -> next = NULL;
+      delete curr;
+   }
+}
 int main()
 {
     //Statically
@@ -84,6 +115,8 @@ int main()
     insertatposition(head,29,3);
     print(head);
     cout<<getlength(head)<<endl;
+    deletenode(4,head);
+    print(head);
     return 0; 
 }
 //OUTPUT
@@ -95,3 +128,4 @@ int main()
 6
 7->10->29->20->21->23->25->
 7
+7->10->29->21->23->25->
